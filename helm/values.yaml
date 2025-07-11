@@ -1,1 +1,45 @@
+# Global values
+image:
+  pullPolicy: IfNotPresent
+
+# Frontend microservice
+frontend:
+  image:
+    repository: your-dockerhub-username/frontend
+    tag: latest
+  service:
+    type: LoadBalancer
+    port: 80
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 200m
+      memory: 128Mi
+
+# Backend microservice
+backend:
+  image:
+    repository: your-dockerhub-username/backend
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 5000
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+# Replica settings
+replicaCount:
+  frontend: 2
+  backend: 2
+
+# Ingress settings (optional)
+ingress:
+  enabled: false
 
